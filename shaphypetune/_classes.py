@@ -571,7 +571,7 @@ class _Boruta(_BoostSelector):
             imp_history = np.vstack((imp_history, imp_real))
 
             # register which feature is more imp than the max of shadows
-            hit_reg[np.where(imp_real[~np.isnan(imp_real)] > imp_sha_max)[0]] += 1
+            hit_reg[imp_real > imp_sha_max] += 1
 
             # check if a feature is doing better than expected by chance
             dec_reg = self._do_tests(dec_reg, hit_reg, i + 1)
